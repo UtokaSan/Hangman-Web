@@ -22,7 +22,7 @@ func leaderboard(w http.ResponseWriter, r *http.Request) {
 }
 
 func renderTemplate(w http.ResponseWriter, tmpl string) {
-	t, err := template.ParseFiles("./templates/" + tmpl + ".html")
+	t, err := template.ParseFiles("./templates/" + tmpl + ".tmpl.html")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
