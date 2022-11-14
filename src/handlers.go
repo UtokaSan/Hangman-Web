@@ -10,9 +10,8 @@ const port = ":8080"
 
 func home(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
-
 	for _, value := range r.Form {
-		fmt.Printf("%s", value)
+		fmt.Print(value)
 	}
 	renderTemplate(w, "home")
 }
@@ -22,7 +21,7 @@ func leaderboard(w http.ResponseWriter, r *http.Request) {
 }
 
 func renderTemplate(w http.ResponseWriter, tmpl string) {
-	t, err := template.ParseFiles("./templates/" + tmpl + ".tmpl.html")
+	t, err := template.ParseFiles("./templates/" + tmpl + ".tmpl")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
