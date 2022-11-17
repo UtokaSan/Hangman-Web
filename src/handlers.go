@@ -7,14 +7,16 @@ import (
 )
 
 type HangmanWeb struct {
-	Word string
+	Word         string
+	RandomLetter string
 }
 
 const port = ":8080"
 
 func home(w http.ResponseWriter, r *http.Request) {
-	p := HangmanWeb{}
+	var p HangmanWeb
 	p.Word = Dictionnary("words/words.txt")
+	p.RandomLetter = string(p.Word[len(p.Word)/2-1])
 	r.ParseForm()
 	for _, value := range r.Form {
 		fmt.Print(value)
