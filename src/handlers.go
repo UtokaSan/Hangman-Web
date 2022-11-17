@@ -6,15 +6,15 @@ import (
 	"net/http"
 )
 
-type Test struct {
-	Title string
-	Test  string
+type HangmanWeb struct {
+	Word string
 }
 
 const port = ":8080"
 
 func home(w http.ResponseWriter, r *http.Request) {
-	p := Test{Title: "Test", Test: "Je sais pas"}
+	p := HangmanWeb{}
+	p.Word = Dictionnary("words/words.txt")
 	r.ParseForm()
 	for _, value := range r.Form {
 		fmt.Print(value)
