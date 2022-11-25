@@ -1,6 +1,7 @@
 package hangman_web
 
 import (
+	"fmt"
 	"html/template"
 	"net/http"
 )
@@ -14,8 +15,13 @@ const port = ":8080"
 func Home(w http.ResponseWriter, r *http.Request) {
 	p := HangmanWeb{}
 	p.Word = "Test"
-	t, _ := template.ParseFiles("templates/home.tmpl")
-	t.Execute(w, p)
+	t, err := template.ParseFiles("hangman-web/src/templates/home.html")
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		t.Execute(w, p)
+	}
+
 }
 
 // https://astaxie.gitbooks.io/build-web-application-with-golang/content/en/04.1.html
