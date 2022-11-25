@@ -1,21 +1,24 @@
-package cmd
+package hangman_web
 
 import (
 	"fmt"
+	hangman_web "hangman-web/hangman-classic"
 	"html/template"
 	"net/http"
 )
 
 type HangmanWeb struct {
 	Word string
+	Test string
 }
 
 const port = ":8080"
 
 func Home(w http.ResponseWriter, r *http.Request) {
 	p := HangmanWeb{}
-	p.Word = "Test"
-	t, err := template.ParseFiles("../templates/home.html")
+	p.Word = "test"
+	hangman_web.Display("word", "o")
+	t, err := template.ParseFiles("./hangman-web/templates/home.html")
 	if err != nil {
 		fmt.Println(err)
 	} else {
