@@ -1,4 +1,4 @@
-package hangman_web
+package cmd
 
 import (
 	"fmt"
@@ -15,7 +15,7 @@ const port = ":8080"
 func Home(w http.ResponseWriter, r *http.Request) {
 	p := HangmanWeb{}
 	p.Word = "Test"
-	t, err := template.ParseFiles("hangman-web/src/templates/home.html")
+	t, err := template.ParseFiles("../templates/home.html")
 	if err != nil {
 		fmt.Println(err)
 	} else {
