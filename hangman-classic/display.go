@@ -17,13 +17,15 @@ func Display(word string, letters string) string {
 	result := ""
 	for _, letter := range word {
 		if strings.Contains(letters, string(letter)) {
-			result = string(letter)
+			result += string(letter)
 		} else {
-			result = "_"
+			result += "_"
 		}
 	}
 	return result
 }
+
+//LATER
 func IsInputValid(word string, input string) bool {
 	if len(input) == 1 {
 		for _, letter := range word {
