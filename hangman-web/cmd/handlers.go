@@ -15,10 +15,14 @@ type HangmanWeb struct {
 
 const port = ":8080"
 
+func Game() {
+	p := HangmanWeb{}
+	p.Display = hangman_web.Display(p.Word, "e")
+}
+
 func Home(w http.ResponseWriter, r *http.Request) {
 	p := HangmanWeb{}
-	p.Word = "test"
-	p.Display = hangman_web.Display(p.Word, "e")
+	Game()
 	t, err := template.ParseFiles("./hangman-web/templates/home.html")
 	if err != nil {
 		fmt.Println(err)
