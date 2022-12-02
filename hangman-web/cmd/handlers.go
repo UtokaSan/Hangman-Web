@@ -9,6 +9,7 @@ import (
 
 type HangmanWeb struct {
 	Word string
+	Life int
 	Test string
 }
 
@@ -17,7 +18,7 @@ const port = ":8080"
 func Home(w http.ResponseWriter, r *http.Request) {
 	p := HangmanWeb{}
 	p.Word = "test"
-	hangman_web.Display("word", "o")
+	p.Test = hangman_web.Display(p.Word, "e")
 	t, err := template.ParseFiles("./hangman-web/templates/home.html")
 	if err != nil {
 		fmt.Println(err)

@@ -1,7 +1,6 @@
 package hangman_web
 
 import (
-	"fmt"
 	"strings"
 )
 
@@ -14,14 +13,16 @@ func IsHangmanComplete(word string, letters string) bool {
 	return true
 }
 
-func Display(word string, letters string) {
+func Display(word string, letters string) string {
+	result := ""
 	for _, letter := range word {
 		if strings.Contains(letters, string(letter)) {
-			fmt.Print(string(letter))
+			result = string(letter)
 		} else {
-			fmt.Print("_")
+			result = "_"
 		}
 	}
+	return result
 }
 func IsInputValid(word string, input string) bool {
 	if len(input) == 1 {

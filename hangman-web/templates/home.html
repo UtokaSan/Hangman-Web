@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
-    <link href="static/stylesheets/style.css" type="text/css" rel="stylesheet">
+    <title>Hangman Web</title>
 </head>
 <body>
 <h1>{{ .Word }}</h1>
+<div id = "{{ .Life }"></div>
 <form action = "/hangman" method = "post">
-    <input type = "text" name = "inputText">
-    <input type="submit" value="valid">
+  <input type = "text" name = "inputText">
+  <input type="submit" value="valid">
 </form>
 </body>
 </html>
