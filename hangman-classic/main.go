@@ -20,6 +20,7 @@ func Random(nbr int) int {
 	return rand.Intn(nbr)
 }
 
+// ERROR CHANGE FUNCTION
 func Dictionnary(fileAccess string) string {
 	data, _ := ioutil.ReadFile(fileAccess)
 	str := string(data)
@@ -46,7 +47,7 @@ func main() {
 		hangman.InputMenu = 0
 		fmt.Scanf("%d", &hangman.InputMenu)
 		if hangman.InputMenu == 1 {
-			game()
+			Game()
 		}
 		if hangman.InputMenu == 2 {
 			rules()

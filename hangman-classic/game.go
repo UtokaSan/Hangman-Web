@@ -5,7 +5,7 @@ import (
 	"os"
 )
 
-func game() {
+func Game() {
 	var hangman HangmanData
 	file := os.Args[1]
 	hangman.Word = Dictionnary(file)
