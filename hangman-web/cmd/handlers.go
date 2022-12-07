@@ -18,10 +18,24 @@ const port = ":8080"
 func Home(w http.ResponseWriter, r *http.Request) {
 	test := hangman_web.Dictionnary("./words/words.txt")
 	display := hangman_web.Display(test, "u")
+	cookie(w, HangmanWeb{}.Word)
 	fmt.Print(r.FormValue("inputText"))
 	renderTemplate(w, "./hangman-web/templates/home", HangmanWeb{
 		Word: display,
 	})
+}
+
+// Take Value Word & save value
+func cookie(w http.ResponseWriter, Word string) {
+	cookie := http.Cookie{
+		Name:     "Cookie",
+		Value:    Word,
+		Path:     "/",
+		HttpOnly: true,
+		Secure:   true,
+		SameSite: http.SameSiteLaxMode,
+	}
+	http.SetCookie(w, &cookie)
 }
 
 func renderTemplate(w http.ResponseWriter, tmpl string, p HangmanWeb) {
@@ -38,3 +52,4 @@ func renderTemplate(w http.ResponseWriter, tmpl string, p HangmanWeb) {
 // https://www.youtube.com/watch?v=GnLHI_nekm8
 // https://golangcode.com/add-a-http-cookie/
 //https://youtu.be/ONAnstqcEcA
+// *** https://www.alexedwards.net/blog/working-with-cookies-in-go ***
