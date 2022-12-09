@@ -11,6 +11,8 @@
 <div id = "{{ .Life }}"></div>
 <form action = "/hangman" method = "post">
   <input type = "text" name = "inputText">
+  <input value= "{{ .Life }}" type = "hidden" name = "inputText">
+  <input value= "{{ .Display }} " type = "hidden" name = "inputText">
   <input type="submit" value="valid">
 </form>
 </body>
