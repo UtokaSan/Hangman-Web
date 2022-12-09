@@ -9,8 +9,8 @@ func Runner() {
 	server := http.NewServeMux()
 	server.HandleFunc("/", Home)
 	fs := http.FileServer(http.Dir("static"))
-	http.Handle("./hangman-web/templates/static/stylesheets/", http.StripPrefix("./hangman-web/templates/static/stylesheets/", fs))g
-	fmt.Println("http://localhost:8080")
+	http.Handle("./hangman-web/templates/static/stylesheets/", http.StripPrefix("./hangman-web/templates/static/stylesheets/", fs))
+	fmt.Println("(http://localhost:8080) on port ", port)
 	err := http.ListenAndServe(port, server)
 	if err != nil {
 		return
