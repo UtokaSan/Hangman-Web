@@ -16,17 +16,34 @@ type HangmanWeb struct {
 const port = ":8080"
 
 func Home(w http.ResponseWriter, r *http.Request) {
-	test := hangman_web.Dictionnary("./words/words.txt")
-	display := hangman_web.Display(test, "u")
-	cookie(w, HangmanWeb{}.Word)
-	fmt.Print(r.FormValue("inputText"))
-	renderTemplate(w, "./hangman-web/templates/home", HangmanWeb{
-		Word: display,
-	})
+	cookie_Value, err := r.Cookie("Cookie")
+	if err != nil {
+		fmt.Println("Sans cookie")
+		test := hangman_web.Dictionnary("./words/words.txt")
+		cookie(w, r, test)
+		fmt.Println("Word : ",test)
+		fmt.Print(r.FormValue("inputText"))
+		fmt.Println()
+
+		renderTemplate(w, "./hangman-web/templates/home", HangmanWeb{
+			Word: test,
+		})
+	}else {
+		//code sans cookie
+		fmt.Println("Avec cookie")
+		fmt.Println("Word : ", cookie_Value.Value)
+		fmt.Print(r.FormValue("inputText"))
+		fmt.Println()
+
+		renderTemplate(w, "./hangman-web/templates/home", HangmanWeb{
+			Word: cookie_Value.Value,
+		})
+	}
 }
 
+
 // Take Value Word & save value
-func cookie(w http.ResponseWriter, Word string) {
+func cookie(w http.ResponseWriter, r *http.Request, Word string) {
 	cookie := http.Cookie{
 		Name:     "Cookie",
 		Value:    Word,
@@ -35,7 +52,11 @@ func cookie(w http.ResponseWriter, Word string) {
 		Secure:   true,
 		SameSite: http.SameSiteLaxMode,
 	}
+
 	http.SetCookie(w, &cookie)
+	cookies := r.Cookies()
+	fmt.Println("Cookies :", cookies)
+	// r
 }
 
 func renderTemplate(w http.ResponseWriter, tmpl string, p HangmanWeb) {
@@ -53,3 +74,12 @@ func renderTemplate(w http.ResponseWriter, tmpl string, p HangmanWeb) {
 // https://golangcode.com/add-a-http-cookie/
 //https://youtu.be/ONAnstqcEcA
 // *** https://www.alexedwards.net/blog/working-with-cookies-in-go ***
+
+//func ReadCookieServer(w http.ResponseWriter, req *http.Request) {
+//	// read cookie
+//	var cookie,err = req.Cookie("SessionID")
+//	if err == nil {
+//		var cookievalue = cookie.Value
+//		w.Write([]byte(cookievalue))
+//	}
+//}
