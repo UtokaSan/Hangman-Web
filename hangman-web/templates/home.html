@@ -2,15 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <link href="../../stylesheets/style.css" rel="stylesheet">
+
     <title>Hangman Web</title>
-    <link rel="stylesheet" type="text/css" href="../../stylesheets/style.css" media="all" />
 </head>
 <body>
 <h1>{{ .Word }}</h1>
 <h2> {{ .Display }}</h2>
 <h3>{{ .Life }}</h3>
 <div id = "{{ .Life }}"></div>
-<form action = "/hangman" method = "get">
+<form action = "/hangman" method = "post">
   <input type = "text" name = "inputText">
   <input value= "{{ .Life }}" type = "hidden" name = "inputText">
   <input value= "{{ .Display }}" type = "hidden" name = "inputText">
@@ -18,3 +22,6 @@
 </form>
 </body>
 </html>
+
+
+
