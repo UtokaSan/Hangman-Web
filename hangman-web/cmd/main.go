@@ -16,6 +16,7 @@ func Runner() {
 	fmt.Println("(http://localhost:8080) on port ", port)
 	err := http.ListenAndServe(port, server)
 	if err != nil {
+		fmt.Println("Flo is gay :",err)
 		return
 	}
 }

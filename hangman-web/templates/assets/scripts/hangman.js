@@ -5,15 +5,21 @@ const form = document.querySelector('form');
 form.addEventListener('submit', event => {
     event.preventDefault();
 
-    const formData = new FormData(form);
+    const inputUser = document.getElementById("send")
+    console.log(inputUser.value)
 
     fetch('http://localhost:8080/get', {
         method: 'POST',
-        body: formData
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+                inputUser : inputUser.value,
+            })
     })
-        .then(response => response.text())
+        .then(response => response.json())
         .then(data => {
-            document.getElementById("test").innerHTML = data;
-            console.log("")
+            console.log(data)
+            document.getElementById("test").innerHTML = data.Word;
         });
 });

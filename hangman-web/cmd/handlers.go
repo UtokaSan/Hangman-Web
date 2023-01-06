@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"html/template"
 	"net/http"
+	"io/ioutil"
 	"encoding/json"
 )
 
@@ -12,6 +13,11 @@ type HangmanWeb struct {
 	Word    string
 	Life    int
 	Display string
+	Input string
+}
+
+
+type UserInput struct {
 }
 
 const port = ":8080"
@@ -41,10 +47,16 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	}
 }
 func Get (w http.ResponseWriter, r *http.Request) {
+	data, _ := ioutil.ReadAll(r.Body)
+	input := string(data)[14:len(data)-2]
+
+	fmt.Println("data : ", input)
+
 	err := json.NewEncoder(w).Encode(HangmanWeb{
 		Word: "test",
 		Life: 10,
 		Display: "test1",
+		Input: input,
 	})
 	if err != nil {
 		return
