@@ -12,7 +12,6 @@ func Runner() {
 	http.Handle("/stylesheets/", http.StripPrefix("/stylesheets", fs))
 	fmt.Println("(http://localhost:8080) on port ", port)
 	err := http.ListenAndServe(port, server)
-
 	if err != nil {
 		return
 	}

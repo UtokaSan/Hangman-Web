@@ -1,9 +1,9 @@
 package main
 
 import (
-	hangman_web "hangman-web/hangman-web/cmd"
+	hangman_web2 "Hangman/hangman-web/cmd"
 )
 
 func main() {
-	hangman_web.Runner()
+	hangman_web2.Runner()
 }
