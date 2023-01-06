@@ -20,7 +20,24 @@ func Home(w http.ResponseWriter, r *http.Request) {
 	renderTemplate(w, "./hangman-web/templates/home", HangmanWeb{
 		Word: test,
 	})
+}
 
+func Difficulty (w http.ResponseWriter, r *http.Request) {
+	t, err := template.ParseFiles("./hangman-web/templates/difficulty" + ".html")
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		t.Execute(w, r)
+	}
+}
+
+func Login(w http.ResponseWriter, r *http.Request) {
+	t, err := template.ParseFiles("./hangman-web/templates/login" + ".html")
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		t.Execute(w, r)
+	}
 }
 
 func renderTemplate(w http.ResponseWriter, tmpl string, p HangmanWeb) {

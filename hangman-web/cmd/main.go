@@ -7,9 +7,11 @@ import (
 
 func Runner() {
 	server := http.NewServeMux()
-	server.HandleFunc("/", Home)
-	fs := http.FileServer(http.Dir("stylesheets"))
-	http.Handle("/stylesheets/", http.StripPrefix("/stylesheets", fs))
+	server.HandleFunc("/", Login)
+	server.HandleFunc("/difficulty", Difficulty)
+	server.HandleFunc("/hangman", Home)
+	fs := http.FileServer(http.Dir("hangman-web/templates/assets"))
+	server.Handle("/assets/", http.StripPrefix("/assets", fs))
 	fmt.Println("(http://localhost:8080) on port ", port)
 	err := http.ListenAndServe(port, server)
 	if err != nil {
