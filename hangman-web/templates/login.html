@@ -2,10 +2,62 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
-    <link href="stylesheets/login.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hangman Web</title>
+    <link href="assets/stylesheets/login.css" rel="stylesheet">
 </head>
+<audio controls preload="metadata" loop muted>
+    <source src="assets/sounds/horse.mp3.mp3" type="audio/mpeg">
+    <source src="assets/sounds/horse.mp3.mp3" type="audio/ogg; codecs=vorbis">
+</audio>
 <body>
-<h1>LOGIN</h1>
+<audio src = "assets/sounds/horse.mp3.mp3" autoplay="true" id="myAudio"></audio>
+<div class="container on">
+    <div class="screen">
+        <h3 class="title">
+            CONNECTION ESTABLISHED
+        </h3>
+        <div class="box--outer">
+            <div class="box">
+                <div class="box--inner">
+                    <div class="content">
+                        <div class="holder">
+                            <b>Hangman Web</b> —
+                            Hello, welcome to the hangman web project. Please enter your username and your password.
+                            <br>
+                            <br>
+                            <div class="row">
+                                <div class="col col__left label">
+                                    Username
+                                </div>
+                                <div class="col col__center">
+                                    <input class="rows" type="text" style="text-align:center ;" id="login" name="password" required="required" placeholder="" data-error="" maxlength="32"  autocomplete="new-password"
+                                           autofocus="true" />
+                                </div>
+                            </div>
+                            <form method="post">
+                                <div class="row">
+                                    <div class="col col__left label">
+                                        Password
+                                    </div>
+                                    <div class="col col__center ">
+                                        <input class="rows" style="text-align:center;   " type="password" id="password" name="password" required="required" placeholder="" data-error="" maxlength="32" autocomplete="new-password"
+                                               autofocus="true" />
+                                    </div>
+                                </div>
+                                <!-- <b class="flash">ACCESS DENIED</b> -->
+                                <div class="row ">
+                                    <button  class="rows"type="submit" id="submit" name="submit">[log in]</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src = "scripts/index.js"></script>
 </body>
 </html>
