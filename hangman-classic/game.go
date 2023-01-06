@@ -2,13 +2,10 @@ package hangman_web
 
 import (
 	"fmt"
-	"os"
 )
 
-func Game() {
+func Game() string {
 	var hangman HangmanData
-	file := os.Args[1]
-	hangman.Word = Dictionnary(file)
 	hangman.RandomLetter = string(hangman.Word[len(hangman.Word)/2-1])
 	for !IsHangmanComplete(hangman.Word, hangman.RandomLetter) {
 		fmt.Print(hangman.Word)
@@ -19,4 +16,5 @@ func Game() {
 		Display(hangman.Word, hangman.RandomLetter)
 	}
 	fmt.Print("\n\nCongrats !")
+	return Display(hangman.Word, hangman.RandomLetter)
 }

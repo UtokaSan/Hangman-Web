@@ -13,7 +13,7 @@
 <h3>{{ .Life }}</h3>
 <div id = "{{ .Life }}"></div>
 <form action = "/hangman" method = "POST" onsubmit="send(event)">
-  <input type = "text" name = "inputText">
+  <input type = "text" name = "inputText" id = "send">
   <input value= "{{ .Life }}" type = "hidden" name = "inputText">
   <input value= "{{ .Display }}" type = "hidden" name = "inputText">
   <input type="submit" value="valid">

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"html/template"
 	"net/http"
+	"encoding/json"
 )
 
 type HangmanWeb struct {
@@ -39,7 +40,16 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		t.Execute(w, r)
 	}
 }
-
+func Get (w http.ResponseWriter, r *http.Request) {
+	err := json.NewEncoder(w).Encode(HangmanWeb{
+		Word: "test",
+		Life: 10,
+		Display: "test1",
+	})
+	if err != nil {
+		return
+	}
+}
 func renderTemplate(w http.ResponseWriter, tmpl string, p HangmanWeb) {
 	t, err := template.ParseFiles(tmpl + ".html")
 	if err != nil {
