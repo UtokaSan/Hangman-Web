@@ -16,10 +16,6 @@ type HangmanWeb struct {
 	Input string
 }
 
-
-type UserInput struct {
-}
-
 const port = ":8080"
 
 func Home(w http.ResponseWriter, r *http.Request) {
@@ -46,7 +42,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		t.Execute(w, r)
 	}
 }
-func Get (w http.ResponseWriter, r *http.Request) {
+func Post (w http.ResponseWriter, r *http.Request) {
 	data, _ := ioutil.ReadAll(r.Body)
 	input := string(data)[14:len(data)-2]
 
