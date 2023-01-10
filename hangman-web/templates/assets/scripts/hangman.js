@@ -8,7 +8,7 @@ form.addEventListener('submit', event => {
     const inputUser = document.getElementById("send")
     console.log(inputUser.value)
 
-    fetch('http://localhost:8080/get', {
+    fetch('http://localhost:8080/post', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -20,6 +20,6 @@ form.addEventListener('submit', event => {
         .then(response => response.json())
         .then(data => {
             console.log(data)
-            document.getElementById("test").innerHTML = data.Word;
+            document.getElementById("test").innerHTML = data.Input;
         });
 });
