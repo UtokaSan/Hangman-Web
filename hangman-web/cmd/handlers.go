@@ -2,18 +2,18 @@ package hangman_web
 
 import (
 	hangman_web "Hangman/hangman-classic"
+	"encoding/json"
 	"fmt"
 	"html/template"
-	"net/http"
 	"io/ioutil"
-	"encoding/json"
+	"net/http"
 )
 
 type HangmanWeb struct {
 	Word    string
 	Life    int
 	Display string
-	Input string
+	Input   string
 }
 
 const port = ":8080"
@@ -25,7 +25,7 @@ func Home(w http.ResponseWriter, r *http.Request) {
 	})
 }
 
-func Difficulty (w http.ResponseWriter, r *http.Request) {
+func Difficulty(w http.ResponseWriter, r *http.Request) {
 	t, err := template.ParseFiles("./hangman-web/templates/difficulty" + ".html")
 	if err != nil {
 		fmt.Println(err)
@@ -42,17 +42,17 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		t.Execute(w, r)
 	}
 }
-func Post (w http.ResponseWriter, r *http.Request) {
+func Post(w http.ResponseWriter, r *http.Request) {
 	data, _ := ioutil.ReadAll(r.Body)
-	input := string(data)[14:len(data)-2]
+	input := string(data)[14 : len(data)-2]
 
 	fmt.Println("data : ", input)
 
 	err := json.NewEncoder(w).Encode(HangmanWeb{
-		Word: "test",
-		Life: 10,
-		Display: "test1",
-		Input: input,
+		Word:    "test",
+		Life:    10,
+		Display: Game(input),
+		Input:   input,
 	})
 	if err != nil {
 		return

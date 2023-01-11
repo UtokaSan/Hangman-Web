@@ -20,6 +20,6 @@ form.addEventListener('submit', event => {
         .then(response => response.json())
         .then(data => {
             console.log(data)
-            document.getElementById("test").innerHTML = data.Input;
+            document.getElementById("test").innerHTML = data;
         });
 });
