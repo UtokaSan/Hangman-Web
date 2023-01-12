@@ -44,14 +44,15 @@ func Login(w http.ResponseWriter, r *http.Request) {
 }
 func Post(w http.ResponseWriter, r *http.Request) {
 	data, _ := ioutil.ReadAll(r.Body)
-	input := string(data)[14 : len(data)-2]
-
+	println(data)
+	input := string(data)[5 : len(data)-2]
 	fmt.Println("data : ", input)
 
+	// FIX error Game with word in function game
 	err := json.NewEncoder(w).Encode(HangmanWeb{
 		Word:    "test",
 		Life:    10,
-		Display: Game(input),
+		Display: hangman_web.Game(),
 		Input:   input,
 	})
 	if err != nil {

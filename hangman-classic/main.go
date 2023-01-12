@@ -36,7 +36,7 @@ func PrintMenu() {
 	fmt.Print("Choose : \n")
 }
 
-func main() {
+func hang() {
 	if len(os.Args) > 2 {
 		fmt.Print("Too many arguments")
 		return
@@ -46,9 +46,6 @@ func main() {
 	for hangman.InputMenu != 1 {
 		hangman.InputMenu = 0
 		fmt.Scanf("%d", &hangman.InputMenu)
-		if hangman.InputMenu == 1 {
-			Game()
-		}
 		if hangman.InputMenu == 2 {
 			rules()
 			PrintMenu()

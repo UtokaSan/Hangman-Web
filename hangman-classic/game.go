@@ -1,17 +1,11 @@
 package hangman_web
 
-import (
-	"fmt"
-)
-
-func Game(data string) string {
+func Game(data string, word string) string {
 	var hangman HangmanData
-	hangman.RandomLetter = string(hangman.Word[len(hangman.Word)/2-1])
+	var randomLetter = string(word[len(word)/2-1])
 	for !IsHangmanComplete(hangman.Word, hangman.RandomLetter) {
-		fmt.Print(hangman.Word)
 		hangman.RandomLetter += data
-		Display(hangman.Word, hangman.RandomLetter)
+		Display(word, randomLetter)
 	}
-	fmt.Print("\n\nCongrats !")
-	return Display(hangman.Word, hangman.RandomLetter)
+	return Display(word, randomLetter)
 }
