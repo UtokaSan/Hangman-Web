@@ -4,20 +4,20 @@ import (
 	"strings"
 )
 
-func IsHangmanComplete(word string, letters string) bool {
-	for _, letter := range word {
-		if !strings.Contains(letters, string(letter)) {
+func IsHangmanComplete(hangman HangmanData) bool {
+	for _, letter := range hangman.Word {
+		if !strings.Contains(hangman.RandomLetter, string(letter)) {
 			return false
 		}
 	}
 	return true
 }
 
-func Display(word string, letters string) string {
+func Display(word string, letterRandom string) string {
 	result := ""
-	for _, letter := range word {
-		if strings.Contains(letters, string(letter)) {
-			result += string(letter)
+	for _, letterOfWord := range word {
+		if strings.Contains(letterRandom, string(letterOfWord)) {
+			result += string(letterOfWord)
 		} else {
 			result += "_"
 		}

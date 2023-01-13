@@ -1,11 +1,15 @@
 package hangman_web
 
+import "fmt"
+
 func Game(data string, word string) string {
 	var hangman HangmanData
-	var randomLetter = string(word[len(word)/2-1])
-	for !IsHangmanComplete(hangman.Word, hangman.RandomLetter) {
+	hangman.Word = word
+	hangman.RandomLetter = string(hangman.Word[len(hangman.Word)/2-1])
+	if !IsHangmanComplete(hangman) {
+		fmt.Println("OK")
 		hangman.RandomLetter += data
-		Display(word, randomLetter)
+		return Display(hangman.Word, hangman.RandomLetter)
 	}
-	return Display(word, randomLetter)
+	return Display(hangman.Word, hangman.RandomLetter)
 }

@@ -18,10 +18,12 @@ type HangmanWeb struct {
 
 const port = ":8080"
 
+var wordRandom = hangman_web.Dictionnary("./hangman-web/words/words.txt")
+var hangmanweb HangmanWeb
+
 func Home(w http.ResponseWriter, r *http.Request) {
-	test := hangman_web.Dictionnary("./hangman-web/words/words.txt")
 	renderTemplate(w, "./hangman-web/templates/home", HangmanWeb{
-		Word: test,
+		Word: wordRandom,
 	})
 }
 
@@ -45,16 +47,16 @@ func Login(w http.ResponseWriter, r *http.Request) {
 func Post(w http.ResponseWriter, r *http.Request) {
 	data, _ := ioutil.ReadAll(r.Body)
 	println(data)
-	input := string(data)[5 : len(data)-2]
-	fmt.Println("data : ", input)
+	input := string(data)[14 : len(data)-2]
+	fmt.Println("data: ", input)
 
-	// FIX error Game with word in function game
-	err := json.NewEncoder(w).Encode(HangmanWeb{
-		Word:    "test",
-		Life:    10,
-		Display: hangman_web.Game(),
-		Input:   input,
-	})
+	hangmanweb.Input = "test"
+	hangmanweb.Life = 10
+	hangmanweb.Display = hangman_web.Game(input, wordRandom)
+	hangmanweb.Input = input
+
+	fmt.Println(hangmanweb.Display)
+	err := json.NewEncoder(w).Encode(hangmanweb)
 	if err != nil {
 		return
 	}
