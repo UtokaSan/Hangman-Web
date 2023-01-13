@@ -187,5 +187,9 @@ body {
     height:390px;
     opacity:.7;
 }
-
+input[type=button] {
+    display: block;
+    background-color: #000000;
+    color: #FFFFFF;
+}
 
