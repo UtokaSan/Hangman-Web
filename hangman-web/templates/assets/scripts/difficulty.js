@@ -10,14 +10,20 @@ bdy.addEventListener("mousemove", function () {
 
 form.addEventListener('submit', event => {
     console.log(difficultEasy);
-
+    if(event.submitter.name === 'difficulty-easy') {
+        data = 'Easy'
+    } else if(event.submitter.name === 'difficulty-moyen') {
+        data = 'Moyen'
+    } else if (event.submitter.name === 'difficulty-hard') {
+        data = 'Hard'
+    }
     fetch('http://localhost:8080/post-difficulty', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            inputUser : difficultEasy.value,
+            inputUser : data,
         })
     })
         .then(response => response.json())

@@ -63,9 +63,16 @@ func Post(w http.ResponseWriter, r *http.Request) {
 
 func PostDifficulty(w http.ResponseWriter, r *http.Request) {
 	data, _ := ioutil.ReadAll(r.Body)
-	input := string(data)
+	input := string(data)[14 : len(data)-2]
 	hangmanweb.Input = input
-	fmt.Println("input : ", hangmanweb.Input)
+	fmt.Println("Difficulty : ", hangmanweb.Input)
+	if input == "Easy" {
+		result = hangman_web.Dictionnary("./hangman-web/words/words.txt")
+	} else if input == "Moyen" {
+		result = hangman_web.Dictionnary("./hangman-web/words/words2.txt")
+	} else {
+		result = hangman_web.Dictionnary("./hangman-web/words/words3.txt")
+	}
 }
 func renderTemplate(w http.ResponseWriter, tmpl string, p HangmanWeb) {
 	t, err := template.ParseFiles(tmpl + ".html")
