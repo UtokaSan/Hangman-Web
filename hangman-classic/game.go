@@ -11,5 +11,5 @@ func Game(data string, word string) string {
 		hangman.RandomLetter += data
 		return Display(hangman.Word, hangman.RandomLetter)
 	}
-	return Display(hangman.Word, hangman.RandomLetter)
+	return "Congrats"
 }

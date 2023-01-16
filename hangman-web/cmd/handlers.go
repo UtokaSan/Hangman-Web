@@ -18,12 +18,12 @@ type HangmanWeb struct {
 
 const port = ":8080"
 
-var wordRandom = hangman_web.Dictionnary("./hangman-web/words/words.txt")
+var result = hangman_web.Dictionnary("./hangman-web/words/words.txt")
 var hangmanweb HangmanWeb
 
 func Home(w http.ResponseWriter, r *http.Request) {
 	renderTemplate(w, "./hangman-web/templates/home", HangmanWeb{
-		Word: wordRandom,
+		Word: result,
 	})
 }
 
@@ -46,20 +46,26 @@ func Login(w http.ResponseWriter, r *http.Request) {
 }
 func Post(w http.ResponseWriter, r *http.Request) {
 	data, _ := ioutil.ReadAll(r.Body)
-	println(data)
+	fmt.Println("result : ", result)
 	input := string(data)[14 : len(data)-2]
-	fmt.Println("data: ", input)
 
 	hangmanweb.Input = "test"
 	hangmanweb.Life = 10
-	hangmanweb.Display = hangman_web.Game(input, wordRandom)
+	hangmanweb.Display = hangman_web.Game(input, result)
 	hangmanweb.Input = input
 
-	fmt.Println(hangmanweb.Display)
+	fmt.Println("Display : ", hangmanweb.Display)
 	err := json.NewEncoder(w).Encode(hangmanweb)
 	if err != nil {
 		return
 	}
+}
+
+func PostDifficulty(w http.ResponseWriter, r *http.Request) {
+	data, _ := ioutil.ReadAll(r.Body)
+	input := string(data)
+	hangmanweb.Input = input
+	fmt.Println("input : ", hangmanweb.Input)
 }
 func renderTemplate(w http.ResponseWriter, tmpl string, p HangmanWeb) {
 	t, err := template.ParseFiles(tmpl + ".html")
