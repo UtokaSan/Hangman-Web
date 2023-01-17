@@ -46,6 +46,9 @@ func Login(w http.ResponseWriter, r *http.Request) {
 }
 func Win(w http.ResponseWriter, r *http.Request) {
 	t, err := template.ParseFiles("./hangman-web/templates/win" + ".html")
+	if hangmanweb.Display == hangmanweb.Word {
+		hangmanweb.Display = "win"
+	}
 	if err != nil {
 		fmt.Println(err)
 	} else {

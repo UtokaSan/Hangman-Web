@@ -23,3 +23,6 @@ form.addEventListener('submit', event => {
             document.getElementById("test").innerHTML = data.Display;
         });
 });
+if (data.Display === "win") {
+    document.location.href = 'http://localhost:8080/post';
+}
