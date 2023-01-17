@@ -18,7 +18,7 @@ type HangmanWeb struct {
 
 const port = ":8080"
 
-var result = hangman_web.Dictionnary("./hangman-web/words/words.txt")
+var result = hangman_web.Dictionnary("./hangman-web/words/easy.txt")
 var hangmanweb HangmanWeb
 
 func Home(w http.ResponseWriter, r *http.Request) {
@@ -38,6 +38,22 @@ func Difficulty(w http.ResponseWriter, r *http.Request) {
 
 func Login(w http.ResponseWriter, r *http.Request) {
 	t, err := template.ParseFiles("./hangman-web/templates/login" + ".html")
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		t.Execute(w, r)
+	}
+}
+func Win(w http.ResponseWriter, r *http.Request) {
+	t, err := template.ParseFiles("./hangman-web/templates/win" + ".html")
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		t.Execute(w, r)
+	}
+}
+func Lose(w http.ResponseWriter, r *http.Request) {
+	t, err := template.ParseFiles("./hangman-web/templates/lose" + ".html")
 	if err != nil {
 		fmt.Println(err)
 	} else {
@@ -67,11 +83,11 @@ func PostDifficulty(w http.ResponseWriter, r *http.Request) {
 	hangmanweb.Input = input
 	fmt.Println("Difficulty : ", hangmanweb.Input)
 	if input == "Easy" {
-		result = hangman_web.Dictionnary("./hangman-web/words/words.txt")
+		result = hangman_web.Dictionnary("./hangman-web/words/easy.txt")
 	} else if input == "Moyen" {
-		result = hangman_web.Dictionnary("./hangman-web/words/words2.txt")
+		result = hangman_web.Dictionnary("./hangman-web/words/medium.txt")
 	} else {
-		result = hangman_web.Dictionnary("./hangman-web/words/words3.txt")
+		result = hangman_web.Dictionnary("./hangman-web/words/hard.txt")
 	}
 }
 func renderTemplate(w http.ResponseWriter, tmpl string, p HangmanWeb) {

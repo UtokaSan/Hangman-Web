@@ -10,6 +10,8 @@ func Runner() {
 	server.HandleFunc("/", Login)
 	server.HandleFunc("/difficulty", Difficulty)
 	server.HandleFunc("/hangman", Home)
+	server.HandleFunc("/win", Win)
+	server.HandleFunc("/lose", Lose)
 	server.HandleFunc("/post", Post)
 	server.HandleFunc("/post-difficulty", PostDifficulty)
 	fs := http.FileServer(http.Dir("hangman-web/templates/assets"))
