@@ -14,6 +14,7 @@ func Runner() {
 	server.HandleFunc("/lose", Lose)
 	server.HandleFunc("/post", Post)
 	server.HandleFunc("/post-difficulty", PostDifficulty)
+	server.HandleFunc("/post-login", LoginPost)
 	fs := http.FileServer(http.Dir("hangman-web/templates/assets"))
 	server.Handle("/assets/", http.StripPrefix("/assets", fs))
 	fmt.Println("(http://localhost:8080) on port ", port)

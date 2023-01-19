@@ -7,13 +7,20 @@ import (
 	"html/template"
 	"io/ioutil"
 	"net/http"
+	"strings"
 )
 
 type HangmanWeb struct {
-	Word    string
-	Life    int
-	Display string
-	Input   string
+	Word     string
+	Life     int
+	Display  string
+	Input    string
+	InputUse bool
+}
+
+type Account struct {
+	Mail     string
+	Password string
 }
 
 const port = ":8080"
@@ -44,6 +51,23 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		t.Execute(w, r)
 	}
 }
+
+func LoginPost(w http.ResponseWriter, r *http.Request) {
+	data, err := ioutil.ReadFile("./hangman-web/cmd/account.json")
+	var accountUser Account
+	account := string(data)
+	println(account)
+	json.NewDecoder(r.Body).Decode(&accountUser)
+	if strings.Contains(account, accountUser.Mail) && strings.Contains(account, accountUser.Password) {
+		json.NewEncoder(w).Encode("IsAccount : ok")
+	} else {
+		json.NewEncoder(w).Encode("IsAccount : ko")
+	}
+	if err != nil {
+		fmt.Println(err)
+	}
+}
+
 func Win(w http.ResponseWriter, r *http.Request) {
 	t, err := template.ParseFiles("./hangman-web/templates/win" + ".html")
 	if hangmanweb.Display == hangmanweb.Word {
@@ -72,6 +96,7 @@ func Post(w http.ResponseWriter, r *http.Request) {
 	hangmanweb.Life = 10
 	hangmanweb.Display = hangman_web.Game(input, result)
 	hangmanweb.Input = input
+	hangmanweb.InputUse = hangman_web.IsInputValid(result, input)
 
 	fmt.Println("Display : ", hangmanweb.Display)
 	err := json.NewEncoder(w).Encode(hangmanweb)
