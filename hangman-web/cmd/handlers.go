@@ -56,12 +56,13 @@ func LoginPost(w http.ResponseWriter, r *http.Request) {
 	data, err := ioutil.ReadFile("./hangman-web/cmd/account.json")
 	var accountUser Account
 	account := string(data)
-	println(account)
 	json.NewDecoder(r.Body).Decode(&accountUser)
 	if strings.Contains(account, accountUser.Mail) && strings.Contains(account, accountUser.Password) {
-		json.NewEncoder(w).Encode("IsAccount : ok")
+		println("The account exist")
+		json.NewEncoder(w).Encode("IsAccount :" + "ok")
 	} else {
-		json.NewEncoder(w).Encode("IsAccount : ko")
+		println("the account not exist")
+		json.NewEncoder(w).Encode("IsAccount :" + "ko")
 	}
 	if err != nil {
 		fmt.Println(err)
