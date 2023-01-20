@@ -11,11 +11,12 @@ import (
 )
 
 type HangmanWeb struct {
-	Word     string
-	Life     int
-	Display  string
-	Input    string
-	InputUse bool
+	Word      string
+	Life      int
+	Display   string
+	Input     string
+	InputUse  bool
+	LetterUse string
 }
 
 type Account struct {
@@ -25,6 +26,7 @@ type Account struct {
 
 const port = ":8080"
 
+var test = ""
 var result = hangman_web.Dictionnary("./hangman-web/words/easy.txt")
 var hangmanweb HangmanWeb
 
@@ -91,14 +93,18 @@ func Lose(w http.ResponseWriter, r *http.Request) {
 func Post(w http.ResponseWriter, r *http.Request) {
 	data, _ := ioutil.ReadAll(r.Body)
 	fmt.Println("result : ", result)
-	input := string(data)[14 : len(data)-2]
-
+	input := string(data)[21 : len(data)-3]
+	fmt.Println("La valeur est :", input)
 	hangmanweb.Input = "test"
 	hangmanweb.Life = 10
-	hangmanweb.Display = hangman_web.Game(input, result)
 	hangmanweb.Input = input
 	hangmanweb.InputUse = hangman_web.IsInputValid(result, input)
-
+	println(hangmanweb.InputUse)
+	if hangmanweb.InputUse == true {
+		test = test + "" + input
+		fmt.Println(test)
+	}
+	hangmanweb.Display = hangman_web.Game(test, result)
 	fmt.Println("Display : ", hangmanweb.Display)
 	err := json.NewEncoder(w).Encode(hangmanweb)
 	if err != nil {
