@@ -18,6 +18,7 @@ func Runner() {
 	fs := http.FileServer(http.Dir("hangman-web/templates/assets"))
 	server.Handle("/assets/", http.StripPrefix("/assets", fs))
 	fmt.Println("(http://localhost:8080) on port ", port)
+	hangmanweb.Life = 10
 	err := http.ListenAndServe(port, server)
 	if err != nil {
 		fmt.Println("error :", err)

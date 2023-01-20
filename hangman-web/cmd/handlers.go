@@ -93,17 +93,19 @@ func Lose(w http.ResponseWriter, r *http.Request) {
 func Post(w http.ResponseWriter, r *http.Request) {
 	data, _ := ioutil.ReadAll(r.Body)
 	fmt.Println("result : ", result)
-	input := string(data)[21 : len(data)-3]
+	input := string(data)[14 : len(data)-2]
 	fmt.Println("La valeur est :", input)
 	hangmanweb.Input = "test"
-	hangmanweb.Life = 10
 	hangmanweb.Input = input
 	hangmanweb.InputUse = hangman_web.IsInputValid(result, input)
 	println(hangmanweb.InputUse)
 	if hangmanweb.InputUse == true {
 		test = test + "" + input
 		fmt.Println(test)
+	} else {
+		hangmanweb.Life--
 	}
+	fmt.Println("vie :", hangmanweb.Life)
 	hangmanweb.Display = hangman_web.Game(test, result)
 	fmt.Println("Display : ", hangmanweb.Display)
 	err := json.NewEncoder(w).Encode(hangmanweb)
