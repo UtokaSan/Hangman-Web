@@ -24,18 +24,10 @@ form.addEventListener('submit', event => {
             console.log(data.Display)
             console.log(data);
             document.getElementById("test").innerHTML = data.Display;
-            if (data.InputUse === false) {
-                let para = document.createElement("p");
-                let node = document.createTextNode(inputUser.value);
-                para.appendChild(node);
-                let element = document.getElementById("test1"); // Utiliser une flex box pour garder le texte aligné
-                element.appendChild(para);
-            }
             if (data.Life <= 0) {
                 window.location.href = "/lose"
             }
-            //Corriger cette partie
-            if (data.Life > 0 && data.Display !== "_") {
+            if (data.Life > 0 && data.Display == data.Word) {
                 window.location.href = "/win"
             }
             send.value = "";

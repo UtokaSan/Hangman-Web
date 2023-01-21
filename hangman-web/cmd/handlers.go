@@ -95,6 +95,7 @@ func Post(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("result : ", result)
 	input := string(data)[14 : len(data)-2]
 	fmt.Println("La valeur est :", input)
+	hangmanweb.Word = result
 	hangmanweb.Input = "test"
 	hangmanweb.Input = input
 	hangmanweb.InputUse = hangman_web.IsInputValid(result, input)
