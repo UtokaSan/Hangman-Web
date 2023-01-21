@@ -28,36 +28,35 @@
                             <br>
                             <br>
                             <div class="row">
-                                <div class="col col__left label">
-                                    Username
-                                </div>
-                                <div class="col col__center">
-                                    <input class="rows" type="text" style="text-align:center ;" id="login" name="password" required="required" placeholder="" data-error="" maxlength="32"  autocomplete="new-password"
-                                           autofocus="true" />
-                                </div>
-                            </div>
-                            <form method="post">
-                                <div class="row">
+                                <form method="post" action = "/difficulty">
                                     <div class="col col__left label">
-                                        Password
+                                        Username
                                     </div>
-                                    <div class="col col__center ">
-                                        <input class="rows" style="text-align:center;   " type="password" id="password" name="password" required="required" placeholder="" data-error="" maxlength="32" autocomplete="new-password"
+                                    <div class="col col__center">
+                                        <input class="rows" type="text" style="text-align:center ;" id="login" name="password" required="required" placeholder="" data-error="" maxlength="32"  autocomplete="new-password"
+                                            autofocus="true" />
+                                    </div>
+                                    <div class="row">
+                                        <div class="col col__left label">
+                                            Password
+                                        </div>
+                                        <div class="col col__center ">
+                                            <input class="rows" style="text-align:center;   " type="password" id="password" name="password" required="required" placeholder="" data-error="" maxlength="32" autocomplete="new-password"
                                                autofocus="true" />
+                                        </div>
                                     </div>
-                                </div>
-                                <!-- <b class="flash">ACCESS DENIED</b> -->
-                                <div class="row ">
-                                    <button  class="rows"type="submit" id="submit" name="submit">[log in]</button>
-                                </div>
-                            </form>
+                                    <!-- <b class="flash">ACCESS DENIED</b> -->
+                                    <div class="row ">
+                                        <button  class="rows"type="submit" id="submit" name="submit">[log in]</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 <script src = "assets/scripts/login.js"></script>
 </body>
 </html>
