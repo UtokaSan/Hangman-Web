@@ -61,7 +61,7 @@ func LoginPost(w http.ResponseWriter, r *http.Request) {
 	json.NewDecoder(r.Body).Decode(&accountUser)
 	if strings.Contains(account, accountUser.Mail) && strings.Contains(account, accountUser.Password) {
 		println("The account exist")
-		json.NewEncoder(w).Encode("IsAccount :" + "ok")
+		json.NewEncoder(w).Encode("IsAccount" + "ok")
 	} else {
 		println("the account not exist")
 		json.NewEncoder(w).Encode("IsAccount :" + "ko")
