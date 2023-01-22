@@ -1,5 +1,5 @@
 /** Positions Hangman **/
 html {
-    background: url("/assets/images/background.png");
+    background: url("/assets/images/background.png") no-repeat  ;
     color: wheat;
 }
