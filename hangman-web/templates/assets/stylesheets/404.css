@@ -1,0 +1,13 @@
+html,
+body {
+     overflow: hidden;
+     height:100%;
+     padding:0;
+     margin:0;
+}
+body {
+     background-image: url('https://media.giphy.com/media/11clOWGCHzWG7C/giphy.gif');
+     background-size:cover;
+     color: red;
+     text-align: center;
+}

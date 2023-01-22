@@ -31,26 +31,38 @@ var result = hangman_web.Dictionnary("./hangman-web/words/easy.txt")
 var hangmanweb HangmanWeb
 
 func Home(w http.ResponseWriter, r *http.Request) {
-	renderTemplate(w, "./hangman-web/templates/home", HangmanWeb{
-		Word: result,
-	})
+	if r.URL.Path != "/hangman" {
+		errorHandler(w, r, http.StatusNotFound)
+	} else {
+		renderTemplate(w, "./hangman-web/templates/home", HangmanWeb{
+			Word: result,
+		})
+	}
 }
 
 func Difficulty(w http.ResponseWriter, r *http.Request) {
-	t, err := template.ParseFiles("./hangman-web/templates/difficulty" + ".html")
-	if err != nil {
-		fmt.Println(err)
+	if r.URL.Path != "/difficulty" {
+		errorHandler(w, r, http.StatusNotFound)
 	} else {
-		t.Execute(w, r)
+		t, err := template.ParseFiles("./hangman-web/templates/difficulty" + ".html")
+		if err != nil {
+			fmt.Println(err)
+		} else {
+			t.Execute(w, r)
+		}
 	}
 }
 
 func Login(w http.ResponseWriter, r *http.Request) {
-	t, err := template.ParseFiles("./hangman-web/templates/login" + ".html")
-	if err != nil {
-		fmt.Println(err)
+	if r.URL.Path != "/" {
+		errorHandler(w, r, http.StatusNotFound)
 	} else {
-		t.Execute(w, r)
+		t, err := template.ParseFiles("./hangman-web/templates/login" + ".html")
+		if err != nil {
+			fmt.Println(err)
+		} else {
+			t.Execute(w, r)
+		}
 	}
 }
 
@@ -72,22 +84,30 @@ func LoginPost(w http.ResponseWriter, r *http.Request) {
 }
 
 func Win(w http.ResponseWriter, r *http.Request) {
-	t, err := template.ParseFiles("./hangman-web/templates/win" + ".html")
-	if hangmanweb.Display == hangmanweb.Word {
-		hangmanweb.Display = "win"
-	}
-	if err != nil {
-		fmt.Println(err)
+	if r.URL.Path != "/win" {
+		errorHandler(w, r, http.StatusNotFound)
 	} else {
-		t.Execute(w, r)
+		t, err := template.ParseFiles("./hangman-web/templates/win" + ".html")
+		if hangmanweb.Display == hangmanweb.Word {
+			hangmanweb.Display = "win"
+		}
+		if err != nil {
+			fmt.Println(err)
+		} else {
+			t.Execute(w, r)
+		}
 	}
 }
 func Lose(w http.ResponseWriter, r *http.Request) {
-	t, err := template.ParseFiles("./hangman-web/templates/lose" + ".html")
-	if err != nil {
-		fmt.Println(err)
+	if r.URL.Path != "/lose" {
+		errorHandler(w, r, http.StatusNotFound)
 	} else {
-		t.Execute(w, r)
+		t, err := template.ParseFiles("./hangman-web/templates/lose" + ".html")
+		if err != nil {
+			fmt.Println(err)
+		} else {
+			t.Execute(w, r)
+		}
 	}
 }
 func Post(w http.ResponseWriter, r *http.Request) {
@@ -128,6 +148,19 @@ func PostDifficulty(w http.ResponseWriter, r *http.Request) {
 		result = hangman_web.Dictionnary("./hangman-web/words/hard.txt")
 	}
 }
+
+func errorHandler(w http.ResponseWriter, r *http.Request, status int) {
+	w.WriteHeader(status)
+	if status == http.StatusNotFound {
+		t, err := template.ParseFiles("./hangman-web/templates/404" + ".html")
+		if err != nil {
+			fmt.Println(err)
+		} else {
+			t.Execute(w, r)
+		}
+	}
+}
+
 func renderTemplate(w http.ResponseWriter, tmpl string, p HangmanWeb) {
 	t, err := template.ParseFiles(tmpl + ".html")
 	if err != nil {
