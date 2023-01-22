@@ -1,5 +1,6 @@
 /** Positions Hangman **/
 html {
-    background: url("/assets/images/background.png") no-repeat  ;
+    background: url("/assets/images/background.png") no-repeat;
     color: wheat;
+    font-size: 30px;
 }

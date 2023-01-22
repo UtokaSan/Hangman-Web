@@ -8,11 +8,8 @@
     <title>Hangman Web</title>
 </head>
 <body>
-<h1>{{ .Word }}</h1>
-<h2> {{ .Display }}</h2>
-<h3>{{ .Life }}</h3>
-<div id = "{{ .Life }}"></div>
-<div id = "test"></div>
+<div id = "test">{{ .Word }}</div>
+<h3 id = "life">10</h3>
 <div id = "test1"></div>
 <form action = "/hangman" method = "POST" id = "form">
   <input type = "text" name = "inputText" id = "send">

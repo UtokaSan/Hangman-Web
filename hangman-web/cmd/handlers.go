@@ -34,8 +34,9 @@ func Home(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path != "/hangman" {
 		errorHandler(w, r, http.StatusNotFound)
 	} else {
+		str := string(result[len(result)/2-1])
 		renderTemplate(w, "./hangman-web/templates/home", HangmanWeb{
-			Word: result,
+			Word: hangman_web.Display(result, str),
 		})
 	}
 }
@@ -72,7 +73,7 @@ func LoginPost(w http.ResponseWriter, r *http.Request) {
 	account := string(data)
 	json.NewDecoder(r.Body).Decode(&accountUser)
 	if strings.Contains(account, accountUser.Mail) && strings.Contains(account, accountUser.Password) {
-		println("The account exist")
+		println("The account exist : ", accountUser.Mail)
 		json.NewEncoder(w).Encode("IsAccount" + "ok")
 	} else {
 		println("the account not exist")

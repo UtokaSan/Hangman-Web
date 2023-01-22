@@ -22,7 +22,7 @@ form.addEventListener('submit', event => {
         .then(response => response.json())
         .then(data => {
             console.log(data.Display)
-            console.log(data);
+            document.getElementById("life").innerHTML = data.Life;
             document.getElementById("test").innerHTML = data.Display;
             if (data.Life <= 0) {
                 window.location.href = "/lose"
