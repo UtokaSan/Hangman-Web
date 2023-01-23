@@ -3,3 +3,27 @@ body {
     background-image: url("https://www.oddtales.net/img/gifs/TLN_E32017_rooftop.gif");
     background-size:cover;
 }
+
+
+:root {
+    --glow:#db0e15;
+    --display:'Audiowide';
+    --grad2: #2c2780;
+    --mono: 'PT Mono'
+
+}
+
+.header-title {
+    font-family:var(--display);
+    font-size:100px;
+    text-transform:uppercase;
+    text-align:right;
+    color:var(--glow);
+    margin:0px 20px 0px 0px;
+    text-shadow:3px 2px 10px;
+    position:relative;
+
+}
+p {
+    font-family: Arial, "Blade Runner Movie Font";
+}
