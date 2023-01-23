@@ -187,9 +187,11 @@ body {
     height:390px;
     opacity:.7;
 }
+
 input[type=button] {
     display: block;
     background-color: #000000;
     color: #FFFFFF;
-    margin-top: 10px;
+    margin-top: 80px;
+    flex-direction: column;
 }
