@@ -29,6 +29,7 @@ const port = ":8080"
 var test = ""
 var result = hangman_web.Dictionnary("./hangman-web/words/easy.txt")
 var hangmanweb HangmanWeb
+var difficulty string
 
 func Home(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path != "/hangman" {
@@ -117,7 +118,6 @@ func Post(w http.ResponseWriter, r *http.Request) {
 	input := string(data)[14 : len(data)-2]
 	fmt.Println("La valeur est :", input)
 	hangmanweb.Word = result
-	hangmanweb.Input = "test"
 	hangmanweb.Input = input
 	hangmanweb.InputUse = hangman_web.IsInputValid(result, input)
 	println(hangmanweb.InputUse)
@@ -129,6 +129,9 @@ func Post(w http.ResponseWriter, r *http.Request) {
 	}
 	fmt.Println("vie :", hangmanweb.Life)
 	hangmanweb.Display = hangman_web.Game(test, result)
+	if hangmanweb.Display == result {
+		resetGame(input)
+	}
 	fmt.Println("Display : ", hangmanweb.Display)
 	err := json.NewEncoder(w).Encode(hangmanweb)
 	if err != nil {
@@ -136,10 +139,22 @@ func Post(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func resetGame(input string) {
+	test = ""
+	test = test + "" + input
+	fmt.Println(difficulty)
+	chooseDifficulty(difficulty)
+	hangmanweb.Life = 10
+}
+
 func PostDifficulty(w http.ResponseWriter, r *http.Request) {
 	data, _ := ioutil.ReadAll(r.Body)
-	input := string(data)[14 : len(data)-2]
-	hangmanweb.Input = input
+	difficulty = string(data)[14 : len(data)-2]
+	hangmanweb.Input = difficulty
+	chooseDifficulty(difficulty)
+	fmt.Println(difficulty)
+}
+func chooseDifficulty(input string) {
 	fmt.Println("Difficulty : ", hangmanweb.Input)
 	if input == "Easy" {
 		result = hangman_web.Dictionnary("./hangman-web/words/easy.txt")
@@ -170,29 +185,3 @@ func renderTemplate(w http.ResponseWriter, tmpl string, p HangmanWeb) {
 		t.Execute(w, p)
 	}
 }
-
-//function envoyerFormulaire(event) {
-//    event.preventDefault(); // Empêche le rechargement de la page
-//
-//    var form = event.target; // Récupère le formulaire
-//
-//    var requestOptions = {
-//        method: form.method,
-//        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-//        body: new FormData(form)
-//    };
-//
-//    fetch(form.action, requestOptions)
-//        .then(response => response.json())
-//        .then(data => console.log(data))
-//        .catch(error => console.error(error))
-//}
-
-//func ReadCookieServer(w http.ResponseWriter, req *http.Request) {
-//	// read cookie
-//	var cookie,err = req.Cookie("SessionID")
-//	if err == nil {
-//		var cookievalue = cookie.Value
-//		w.Write([]byte(cookievalue))
-//	}
-//}
