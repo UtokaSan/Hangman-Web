@@ -1,6 +1,10 @@
 {
   "Mail": "maxime@gmail.com",
-  "password": "toto",
+  "password": "toto"
+},{
+  "Mail": "theo@gmail.com",
+  "password": "toto"
+}, {
   "Mail" : "florian@gmail.com",
   "password" : "toto"
 }

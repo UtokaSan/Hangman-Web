@@ -121,10 +121,13 @@ func Post(w http.ResponseWriter, r *http.Request) {
 	hangmanweb.Input = input
 	hangmanweb.InputUse = hangman_web.IsInputValid(result, input)
 	println(hangmanweb.InputUse)
+	if hangmanweb.Life <= 0 {
+		resetGame(input)
+	}
 	if hangmanweb.InputUse == true {
 		test = test + "" + input
-		fmt.Println(test)
-	} else {
+	}
+	if hangmanweb.InputUse == false {
 		hangmanweb.Life--
 	}
 	fmt.Println("vie :", hangmanweb.Life)
@@ -141,7 +144,6 @@ func Post(w http.ResponseWriter, r *http.Request) {
 
 func resetGame(input string) {
 	test = ""
-	test = test + "" + input
 	fmt.Println(difficulty)
 	chooseDifficulty(difficulty)
 	hangmanweb.Life = 10
