@@ -188,10 +188,14 @@ site-links-con {
     display: block;
     border-color: #d7001e;
     background-color: #000000;
-    color: #FFFFFF;
     margin-top: 90px;
     flex-direction: column;
 }
 #send-form-post input{
-    background-color: red;
+    display: flex;
+    flex-direction: column;
+    background-color: #000000;
+    border-color: #d7001e;
+    margin-top: 40px;
+    color: white;
 }
