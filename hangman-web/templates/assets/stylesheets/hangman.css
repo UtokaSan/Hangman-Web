@@ -4,3 +4,14 @@ html {
     color: wheat;
     font-size: 30px;
 }
+
+#head-hangman {
+    border: 2px solid red;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+#position-body {
+    position: absolute;
+    width: 10%;
+}

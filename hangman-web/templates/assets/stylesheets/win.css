@@ -108,3 +108,8 @@ body {
         transform:translate(0);
     }
 }
+.logo button {
+    position: absolute;
+    right: 50%;
+
+}
