@@ -29,6 +29,7 @@ form.addEventListener('submit', event => {
             }
             if (data.Life > 0 && data.Display == data.Word) {
                 window.location.href = "/win"
+                location.reload(true);
             }
             send.value = "";
         });
