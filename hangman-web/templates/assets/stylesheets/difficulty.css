@@ -188,10 +188,11 @@ body {
     opacity:.7;
 }
 
-input[type=button] {
+site-links-con {
     display: block;
+    border-color: #d7001e;
     background-color: #000000;
     color: #FFFFFF;
-    margin-top: 80px;
+    margin-top: 90px;
     flex-direction: column;
 }
