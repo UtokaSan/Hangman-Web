@@ -69,6 +69,7 @@ func Win(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 }
+
 func Lose(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path != "/lose" {
 		errorHandler(w, r, http.StatusNotFound)
