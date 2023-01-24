@@ -1,9 +1,28 @@
 package hangman_web
 
 import (
+	hangman_web "Hangman/hangman-classic"
 	"fmt"
 	"net/http"
 )
+
+func resetGame() {
+	test = ""
+	fmt.Println(difficulty)
+	chooseDifficulty(difficulty)
+	hangmanweb.Life = 10
+}
+
+func chooseDifficulty(input string) {
+	fmt.Println("Difficulty : ", hangmanweb.Input)
+	if input == "Easy" {
+		result = hangman_web.Dictionnary("./hangman-web/words/easy.txt")
+	} else if input == "Moyen" {
+		result = hangman_web.Dictionnary("./hangman-web/words/medium.txt")
+	} else {
+		result = hangman_web.Dictionnary("./hangman-web/words/hard.txt")
+	}
+}
 
 func Runner() {
 	server := http.NewServeMux()
