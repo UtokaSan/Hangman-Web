@@ -23,12 +23,17 @@ type Account struct {
 	Mail     string
 	Password string
 }
+type LeaderBoard struct {
+	name string
+}
 
 const port = ":8080"
 
 var test = ""
 var result = hangman_web.Dictionnary("./hangman-web/words/easy.txt")
 var hangmanweb HangmanWeb
+var machin string
+var accountuser Account
 var difficulty string
 
 func Home(w http.ResponseWriter, r *http.Request) {
@@ -46,6 +51,7 @@ func Difficulty(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path != "/difficulty" {
 		errorHandler(w, r, http.StatusNotFound)
 	} else {
+		fmt.Println(machin)
 		t, err := template.ParseFiles("./hangman-web/templates/difficulty" + ".html")
 		if err != nil {
 			fmt.Println(err)
@@ -72,6 +78,7 @@ func LoginPost(w http.ResponseWriter, r *http.Request) {
 	data, err := ioutil.ReadFile("./hangman-web/cmd/account.json")
 	var accountUser Account
 	account := string(data)
+	machin = accountuser.Mail
 	json.NewDecoder(r.Body).Decode(&accountUser)
 	if strings.Contains(account, accountUser.Mail) && strings.Contains(account, accountUser.Password) {
 		println("The account exist : ", accountUser.Mail)
@@ -122,7 +129,7 @@ func Post(w http.ResponseWriter, r *http.Request) {
 	hangmanweb.InputUse = hangman_web.IsInputValid(result, input)
 	println(hangmanweb.InputUse)
 	if hangmanweb.Life <= 0 {
-		resetGame(input)
+		resetGame()
 	}
 	if hangmanweb.InputUse == true {
 		test = test + "" + input
@@ -133,7 +140,7 @@ func Post(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("vie :", hangmanweb.Life)
 	hangmanweb.Display = hangman_web.Game(test, result)
 	if hangmanweb.Display == result {
-		resetGame(input)
+		resetGame()
 	}
 	fmt.Println("Display : ", hangmanweb.Display)
 	err := json.NewEncoder(w).Encode(hangmanweb)
@@ -142,7 +149,7 @@ func Post(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func resetGame(input string) {
+func resetGame() {
 	test = ""
 	fmt.Println(difficulty)
 	chooseDifficulty(difficulty)
@@ -156,6 +163,7 @@ func PostDifficulty(w http.ResponseWriter, r *http.Request) {
 	chooseDifficulty(difficulty)
 	fmt.Println(difficulty)
 }
+
 func chooseDifficulty(input string) {
 	fmt.Println("Difficulty : ", hangmanweb.Input)
 	if input == "Easy" {
