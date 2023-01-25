@@ -35,3 +35,15 @@ html {
     right: 23.6%;
     width: 8%;
 }
+#right-leg-hangman {
+    position: absolute;
+    bottom: 41.7%;
+    right: 26.0%;
+    width: 4.5%;
+}
+#left-leg-hangman {
+    position: absolute;
+    bottom: 40.5%;
+    right: 28.6%;
+    width: 3%;
+}
