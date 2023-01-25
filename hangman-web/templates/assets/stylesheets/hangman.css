@@ -1,7 +1,7 @@
 /** Positions Hangman **/
 html {
     background: url("/assets/images/background.png") no-repeat;
-    color: wheat;
+    color: firebrick;
     font-size: 30px;
 }
 
@@ -46,4 +46,30 @@ html {
     bottom: 40.5%;
     right: 28.6%;
     width: 3%;
+}
+#rectangle{
+    width:800px;
+    height:300px;
+    background:#000000;
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: solid 2px #d7001e;
+}
+#send{
+    border-color: #d7001e;
+    border-radius: 10px;
+    background: floralwhite;
+}
+#button-submit{
+    border-color: #d7001e;
+    border-radius: 10px;
+    background: floralwhite;
+    right: 23.6%;
+    width: 8%;
+}
+#hidden{
+    right: 23.6%;
+    width: 8%;
 }
