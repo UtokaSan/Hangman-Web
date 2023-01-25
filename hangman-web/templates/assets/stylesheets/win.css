@@ -12,6 +12,9 @@ body {
 .header-title {
     font-family:'bladerunner', sans-serif;
 }
+button {
+    font-family: bladerunner, sans-serif;
+}
 :root {
     --glow:#db0e15;
     --grad2: #2c2780;

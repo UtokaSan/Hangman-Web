@@ -32,10 +32,7 @@ body {
 }
 
 .header-title {
-    font-family:'bladerunner', sans-serif;
-}
-.header-title {
-   font-family: bladerunner;
+   font-family: bladerunner, sans-serif;
     font-size:100px;
     font-style:oblique;
     text-transform:uppercase;
@@ -47,7 +44,7 @@ body {
 }
 
 .small-title {
-    font-family: bladerunner;
+    font-family: bladerunner, sans-serif;
     font-size:15px;
     text-align:right;
     color:#efefef;

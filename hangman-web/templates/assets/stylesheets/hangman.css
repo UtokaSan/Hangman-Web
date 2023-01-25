@@ -3,8 +3,16 @@ html {
     background: url("/assets/images/background.png") no-repeat;
     color: firebrick;
     font-size: 30px;
+    font-family: bladerunner, sans-serif;
 }
-
+input {
+    font-family: bladerunner, sans-serif;
+}
+@font-face
+{
+    font-family: 'bladerunner';
+    src: url("../fonts/bladerunner.ttf");
+}
 #bar-hangman {
     position: absolute;
     top: 25%;
