@@ -25,9 +25,17 @@ body {
     position:relative;
 
 }
+@font-face
+{
+    font-family: 'bladerunner';
+    src: url("../fonts/bladerunner.ttf");
+}
 
 .header-title {
-    font-family:var(--display);
+    font-family:'bladerunner', sans-serif;
+}
+.header-title {
+   font-family: bladerunner;
     font-size:100px;
     font-style:oblique;
     text-transform:uppercase;
@@ -39,7 +47,7 @@ body {
 }
 
 .small-title {
-    font-family:var(--display);
+    font-family: bladerunner;
     font-size:15px;
     text-align:right;
     color:#efefef;

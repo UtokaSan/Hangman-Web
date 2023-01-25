@@ -4,17 +4,22 @@ body {
     background-size:cover;
 }
 
-
+@font-face
+{
+    font-family: 'bladerunner';
+    src: url("../fonts/bladerunner.ttf");
+}
+.header-title {
+    font-family:'bladerunner', sans-serif;
+}
 :root {
     --glow:#db0e15;
-    --display:'Audiowide';
     --grad2: #2c2780;
     --mono: 'PT Mono'
 
 }
 
 .header-title {
-    font-family: var(--display);
     font-size: 100px;
     text-transform: uppercase;
     text-align: right;

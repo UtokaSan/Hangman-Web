@@ -21,6 +21,7 @@ func Home(w http.ResponseWriter, r *http.Request) {
 		errorHandler(w, r, http.StatusNotFound)
 	} else {
 		str := string(result[len(result)/2-1])
+		fmt.Print("mot avant", result)
 		renderTemplate(w, "./hangman-web/templates/home", HangmanWeb{
 			Word: hangman_web.Display(result, str),
 		})
