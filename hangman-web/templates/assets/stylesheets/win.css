@@ -21,7 +21,10 @@ body {
     color: var(--glow);
     margin: 0px 20px 0px 0px;
     text-shadow: 3px 2px 10px;
-    position: relative;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .logo button,buttom::after{

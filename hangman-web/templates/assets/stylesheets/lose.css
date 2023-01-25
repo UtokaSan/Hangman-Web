@@ -1,6 +1,6 @@
 
 body {
-    background: url("https://www.oddtales.net/img/gifs/TLN_E32017_rooftop.gif") no-repeat;
+    background: url("https://www.oddtales.net/img/gifs/TLN_E32017_lowtown.gif") no-repeat;
     background-size:cover;
 }
 
@@ -10,7 +10,6 @@ body {
     --display:'Audiowide';
     --grad2: #2c2780;
     --mono: 'PT Mono'
-
 }
 
 .header-title {
@@ -21,7 +20,10 @@ body {
     color: var(--glow);
     margin: 0px 20px 0px 0px;
     text-shadow: 3px 2px 10px;
-    position: relative;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .logo button,buttom::after{
