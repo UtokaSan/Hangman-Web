@@ -5,13 +5,33 @@ html {
     font-size: 30px;
 }
 
+#bar-hangman {
+    position: absolute;
+    top: 25%;
+    right: 26.2%;
+    width: 10%;
+}
 #head-hangman {
     position: absolute;
-    top: 31%;
-    right: 27.6%;
+    top: 26.7%;
+    right: 22.3%;
     width: 11%;
 }
-#position-body {
+#body-hangman {
     position: absolute;
-    width: 10%;
+    top: 37.0%;
+    right: 26.0%;
+    width: 6%;
+}
+#left-hand-hangman {
+    position: absolute;
+    top: 37.4%;
+    right: 29.9%;
+    width: 5%;
+}
+#right-hand-hangman {
+    position: absolute;
+    top: 35.5%;
+    right: 23.6%;
+    width: 8%;
 }
