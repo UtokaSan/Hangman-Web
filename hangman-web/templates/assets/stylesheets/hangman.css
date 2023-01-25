@@ -6,10 +6,10 @@ html {
 }
 
 #head-hangman {
-    border: 2px solid red;
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 31%;
+    right: 27.6%;
+    width: 11%;
 }
 #position-body {
     position: absolute;
