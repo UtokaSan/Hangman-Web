@@ -42,7 +42,7 @@ func Post(w http.ResponseWriter, r *http.Request) {
 	if hangmanweb.InputUse == true {
 		test = test + "" + input
 	}
-	if hangmanweb.InputUse == false {
+	if hangmanweb.InputUse == false && len(hangmanweb.Input) == 1 {
 		hangmanweb.Life--
 	}
 	fmt.Println("vie :", hangmanweb.Life)
