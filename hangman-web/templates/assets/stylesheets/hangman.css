@@ -64,11 +64,14 @@ input {
     left: 50%;
     transform: translate(-50%, -50%);
     border: solid 2px #d7001e;
+    text-align: center;
 }
 #send{
     border-color: #d7001e;
-    border-radius: 10px;
+    border-radius: 50px;
     background: floralwhite;
+    width: 20%;
+    height: 20px;
 }
 #button-submit{
     border-color: #d7001e;
@@ -80,4 +83,11 @@ input {
 #hidden{
     right: 23.6%;
     width: 8%;
+}
+#test{
+    margin: 50px;
+}
+#flex {
+    display: flex;
+    justify-content: center;
 }
