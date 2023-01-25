@@ -8,16 +8,18 @@
     <title>Hangman Web</title>
 </head>
 <body>
-<div id = "test">{{ .Word }}</div>
-<h3 id = "life">7</h3>
-<div id = "test1"></div>
-<form action = "/hangman" method = "POST" id = "form">
-  <input type = "text" name = "inputText" id = "send">
-  <input value= "{{ .Life }}" type = "hidden" name = "inputText">
-  <input value= "{{ .Display }}" type = "hidden" name = "inputText">
-  <input type="submit" value="valid" id = "button-submit">
-    <audio src = "assets/sounds/inex.mp3" autoplay="true" id="myAudio"></audio>
-</form>
+<div id="rectangle">
+    <div id = "test">{{ .Word }}</div>
+    <h3 id = "life">7</h3>
+    <div id = "test1"></div>
+    <form action = "/hangman" method = "POST" id = "form">
+        <input type = "text" name = "inputText" id = "send">
+        <input value= "{{ .Life }}" type = "hidden" name = "inputText">
+        <input value= "{{ .Display }}" type = "hidden" name = "inputText">
+        <input type="submit" value="valid" id = "button-submit">
+        <audio src = "assets/sounds/inex.mp3" autoplay="true" id="myAudio"></audio>
+    </form>
+</div>
 <div id="position-bar">
     <img src="/assets/images/bar.png" id="bar-hangman" alt="bar hangman">
 </div>
@@ -39,7 +41,6 @@
 <div  id = "position-leg-left">
     <img src = "/assets/images/left-leg.png" alt = "body hangman" id = "left-leg-hangman">
 </div>
-<div id="rectangle"></div>
 <div id="rectangle1"></div>
 <script src="assets/scripts/hangman.js"></script>
 <script src="assets/scripts/home.js"></script>
