@@ -1,10 +1,15 @@
 console.log("JS Launched");
 const form = document.querySelector('form');
-const inputNoValid = document.querySelector('#test');
 const send = document.querySelector('#send')
-var dataRecupère;
-var previousLength = history.length;
-console.log(dataRecupère)
+//POSITION HIDDEN
+document.getElementById("position-bar").style.visibility="hidden";
+document.getElementById("position-head").style.visibility="hidden";
+document.getElementById("position-body").style.visibility="hidden";
+document.getElementById("position-hand-right").style.visibility="hidden";
+document.getElementById("position-hand-left").style.visibility="hidden";
+document.getElementById("position-hand-left").style.visibility="hidden";
+document.getElementById("position-leg-left").style.visibility="hidden";
+document.getElementById("position-leg-right").style.visibility="hidden";
 
 form.addEventListener('submit', event => {
     event.preventDefault();
@@ -22,7 +27,6 @@ form.addEventListener('submit', event => {
     })
         .then(response => response.json())
         .then(data => {
-            dataRecupère = data.Word
             console.log(data.Display)
             document.getElementById("life").innerHTML = data.Life;
             document.getElementById("test").innerHTML = data.Display;
@@ -34,7 +38,29 @@ form.addEventListener('submit', event => {
                 window.location.reload()
                 window.location.href = "/win"
             }
+            switch (data.Life) {
+                case 6 :
+                    document.getElementById("position-bar").style.visibility="visible";
+                    break;
+                case 5:
+                    document.getElementById("position-head").style.visibility="visible";
+                    break;
+                case 4:
+                    document.getElementById("position-body").style.visibility="visible";
+                    break;
+                case 3:
+                    document.getElementById("position-hand-left").style.visibility="visible";
+                    break;
+                case 2:
+                    document.getElementById("position-hand-right").style.visibility="visible";
+                    break;
+                case 1:
+                    document.getElementById("position-leg-left").style.visibility="visible";
+                    break;
+                case 0:
+                    document.getElementById("position-leg-right").style.visibility="visible";
+                    break;
+            }
             send.value = "";
-            console.log("rst : ",dataRecupère)
         });
 });
