@@ -9,6 +9,9 @@ The hangman web project is a game project make by a team of 2 person
 4. __[Organisation](#organisation)__
 4. __[Functionalities](#functionalities)__
 5. __[Futur functionalities](#futur-functionalities)__
+6. __[Request](#request)__
+7. __[Images](#images)__
+8. __[Author](#author)__
 
 <div id = 'rules' />
 
@@ -59,6 +62,18 @@ Back-end
 - Implementation 3D with threeJS
 - Multiplayer
 
+<div id = 'request' />
+
+## Request
+
+| Request | Pages |
+|---------|-------|
+| Post | Login  |
+| Post | Difficulty |
+| Post | Hangman |
+
+<div id = 'images' />
+
 ## Images
 
 Difficulty page :
@@ -70,3 +85,10 @@ Hangman game page :
 3D futur implementation make with blender by Maxime Poiret ;
 
 ![image 3D](https://image.noelshack.com/fichiers/2023/04/4/1674735075-3d-image.png)
+
+<div id = 'author' />
+
+## Author
+
+- [Florian Boulbes](https://github.com/UtokaSan)
+- [Maxime Poiret](https://github.com/Marht77)
