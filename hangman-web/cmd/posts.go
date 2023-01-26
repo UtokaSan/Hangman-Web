@@ -20,6 +20,7 @@ func LoginPost(w http.ResponseWriter, r *http.Request) {
 		json.NewEncoder(w).Encode("IsAccount" + "ok")
 	} else {
 		println("the account not exist")
+		fmt.Println(accountUser.Mail, accountUser.Password)
 		json.NewEncoder(w).Encode("IsAccount :" + "ko")
 	}
 	if err != nil {
