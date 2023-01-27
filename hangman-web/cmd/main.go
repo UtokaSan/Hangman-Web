@@ -7,18 +7,18 @@ import (
 )
 
 func resetGame() {
-	test = ""
+	inputUseInGame = ""
 	chooseDifficulty(difficulty)
 	hangmanweb.Life = 7
 }
 
 func chooseDifficulty(input string) {
 	if input == "Easy" {
-		result = hangman_web.Dictionnary("./hangman-web/words/easy.txt")
+		wordRandom = hangman_web.Dictionnary("./hangman-web/words/easy.txt")
 	} else if input == "Moyen" {
-		result = hangman_web.Dictionnary("./hangman-web/words/medium.txt")
+		wordRandom = hangman_web.Dictionnary("./hangman-web/words/medium.txt")
 	} else {
-		result = hangman_web.Dictionnary("./hangman-web/words/hard.txt")
+		wordRandom = hangman_web.Dictionnary("./hangman-web/words/hard.txt")
 	}
 }
 

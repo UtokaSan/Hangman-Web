@@ -13,7 +13,7 @@ func LoginPost(w http.ResponseWriter, r *http.Request) {
 	data, err := ioutil.ReadFile("./hangman-web/cmd/account.json")
 	var accountUser Account
 	account := string(data)
-	machin = accountuser.Mail
+	takeMail = accountuser.Mail
 	json.NewDecoder(r.Body).Decode(&accountUser)
 	if strings.Contains(account, accountUser.Mail) && strings.Contains(account, accountUser.Password) {
 		println("The account exist : ", accountUser.Mail)
@@ -31,14 +31,14 @@ func LoginPost(w http.ResponseWriter, r *http.Request) {
 func Post(w http.ResponseWriter, r *http.Request) {
 	data, _ := ioutil.ReadAll(r.Body)
 	input := string(data)[14 : len(data)-2]
-	hangmanweb.Word = result
+	hangmanweb.Word = wordRandom
 	hangmanweb.Input = strings.ToLower(input)
-	hangmanweb.InputUse = hangman_web.IsInputValid(result, hangmanweb.Input)
+	hangmanweb.InputUse = hangman_web.IsInputValid(wordRandom, hangmanweb.Input)
 	if hangmanweb.Life <= 0 {
 		resetGame()
 	}
 	if hangmanweb.InputUse == true {
-		test = test + "" + hangmanweb.Input
+		inputUseInGame = inputUseInGame + "" + hangmanweb.Input
 	}
 	if hangmanweb.InputUse == false && len(hangmanweb.Input) == 1 {
 		if hangmanweb.Input >= string('a') && hangmanweb.Input <= string('z') || hangmanweb.Input >= string('A') && hangmanweb.Input <= string('Z') {
@@ -46,8 +46,8 @@ func Post(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 	fmt.Println("life :", hangmanweb.Life)
-	hangmanweb.Display = hangman_web.Game(test, result)
-	if hangmanweb.Display == result {
+	hangmanweb.Display = hangman_web.Game(inputUseInGame, wordRandom)
+	if hangmanweb.Display == wordRandom {
 		resetGame()
 	}
 	err := json.NewEncoder(w).Encode(hangmanweb)
