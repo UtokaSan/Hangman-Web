@@ -8,13 +8,11 @@ import (
 
 func resetGame() {
 	test = ""
-	fmt.Println(difficulty)
 	chooseDifficulty(difficulty)
 	hangmanweb.Life = 7
 }
 
 func chooseDifficulty(input string) {
-	fmt.Println("Difficulty : ", hangmanweb.Input)
 	if input == "Easy" {
 		result = hangman_web.Dictionnary("./hangman-web/words/easy.txt")
 	} else if input == "Moyen" {

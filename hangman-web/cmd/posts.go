@@ -30,28 +30,26 @@ func LoginPost(w http.ResponseWriter, r *http.Request) {
 
 func Post(w http.ResponseWriter, r *http.Request) {
 	data, _ := ioutil.ReadAll(r.Body)
-	fmt.Println("result : ", result)
 	input := string(data)[14 : len(data)-2]
-	fmt.Println("La valeur est :", input)
 	hangmanweb.Word = result
-	hangmanweb.Input = input
-	hangmanweb.InputUse = hangman_web.IsInputValid(result, input)
-	println(hangmanweb.InputUse)
+	hangmanweb.Input = strings.ToLower(input)
+	hangmanweb.InputUse = hangman_web.IsInputValid(result, hangmanweb.Input)
 	if hangmanweb.Life <= 0 {
 		resetGame()
 	}
 	if hangmanweb.InputUse == true {
-		test = test + "" + input
+		test = test + "" + hangmanweb.Input
 	}
 	if hangmanweb.InputUse == false && len(hangmanweb.Input) == 1 {
-		hangmanweb.Life--
+		if hangmanweb.Input >= string('a') && hangmanweb.Input <= string('z') || hangmanweb.Input >= string('A') && hangmanweb.Input <= string('Z') {
+			hangmanweb.Life--
+		}
 	}
-	fmt.Println("vie :", hangmanweb.Life)
+	fmt.Println("life :", hangmanweb.Life)
 	hangmanweb.Display = hangman_web.Game(test, result)
 	if hangmanweb.Display == result {
 		resetGame()
 	}
-	fmt.Println("Display : ", hangmanweb.Display)
 	err := json.NewEncoder(w).Encode(hangmanweb)
 	if err != nil {
 		return
@@ -63,5 +61,4 @@ func PostDifficulty(w http.ResponseWriter, r *http.Request) {
 	difficulty = string(data)[14 : len(data)-2]
 	hangmanweb.Input = difficulty
 	chooseDifficulty(difficulty)
-	fmt.Println(difficulty)
 }
