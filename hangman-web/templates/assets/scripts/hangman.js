@@ -14,7 +14,6 @@ document.getElementById("position-leg-right").style.visibility="hidden";
 form.addEventListener('submit', event => {
     event.preventDefault();
     const inputUser = document.getElementById("send")
-    console.log(inputUser.value)
 
     fetch('http://localhost:8080/post', {
         method: 'POST',
@@ -23,11 +22,10 @@ form.addEventListener('submit', event => {
         },
         body: JSON.stringify({
                 inputUser : inputUser.value,
-            })
+        })
     })
         .then(response => response.json())
         .then(data => {
-            console.log(data.Display)
             document.getElementById("life").innerHTML = data.Life;
             document.getElementById("test").innerHTML = data.Display;
             if (data.Life <= 0) {

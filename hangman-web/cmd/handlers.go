@@ -20,9 +20,9 @@ func Home(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path != "/hangman" {
 		errorHandler(w, r, http.StatusNotFound)
 	} else {
-		str := string(inputUseInGame[len(inputUseInGame)/2-1])
+		str := string(wordRandom[len(wordRandom)/2-1])
 		renderTemplate(w, "./hangman-web/templates/home", HangmanWeb{
-			Word: hangman_web.Display(inputUseInGame, str),
+			Word: hangman_web.Display(wordRandom, str),
 		})
 	}
 }
