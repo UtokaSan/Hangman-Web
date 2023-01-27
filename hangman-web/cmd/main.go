@@ -8,7 +8,6 @@ import (
 
 func resetGame() {
 	inputUseInGame = ""
-	chooseDifficulty(difficulty)
 	hangmanweb.Life = 7
 }
 
